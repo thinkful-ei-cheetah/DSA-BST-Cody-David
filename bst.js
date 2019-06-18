@@ -48,6 +48,9 @@
                /    /  
               N    T
 
+
               
+//4. 
+  //adding all of the key values of a tree      
                
               
