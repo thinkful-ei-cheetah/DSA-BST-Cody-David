@@ -3,10 +3,10 @@
 class BinarySearchTree {
   constructor(key = null, value = null, parent = null) {
     this.key = key,
-    this.value = value,
-    this.parent = parent,
-    this.left = null,
-    this.right = null;
+      this.value = value,
+      this.parent = parent,
+      this.left = null,
+      this.right = null;
   }
 
 
@@ -140,7 +140,7 @@ function main() {
   EasyBst.insert('o');
   EasyBst.insert('n');
   // console.log(EasyBst);
-  return(EasyBst);
+  return (EasyBst);
 }
 // console.log(main());
 
@@ -154,8 +154,8 @@ function tree(t) {
 
 
 //Height
-function height(tree){
-  if(!tree){
+function height(tree) {
+  if (!tree) {
     return 0;
   }
   let leftHeight = height(tree.left);
@@ -167,31 +167,31 @@ function height(tree){
 // console.log(tree(main()));
 
 //is it a BST
-function isBST(tree){
+function isBST(tree) {
 
-  if(!tree){
+  if (!tree) {
     return false;
   }
   else if (tree.left > tree.key || tree.right < tree.key) {
     return false;
-  }else{
+  } else {
     return true;
   }
-  
+
 }
 // console.log(isBST(main()));
 let state = {
   n: 3,
-  result:null
+  result: null
 };
-function thirdLargest(tree,state){
+function thirdLargest(tree, state) {
 
-  if(tree.right){
-    thirdLargest(tree.right,state);
-    if(state.result) return;
+  if (tree.right) {
+    thirdLargest(tree.right, state);
+    if (state.result) return;
   }
   state.n--;
-  if(!state.n){
+  if (!state.n) {
     state.result = tree.key;
     return state.result;
   }
@@ -200,25 +200,42 @@ function thirdLargest(tree,state){
   }
 
 }
-thirdLargest(main(),state);
+thirdLargest(main(), state);
 // console.log(state.result);
 let counter = {
   number: 0
 };
-function balaced(tree,counter){
+function balaced(tree, counter) {
 
-  if(tree.right){
+  if (tree.right) {
     counter.number++;
-    balaced(tree.right,counter);
+    balaced(tree.right, counter);
   }
-  if(tree.left){
+  if (tree.left) {
     counter.number--;
-    balaced(tree.left,counter);
+    balaced(tree.left, counter);
   }
-  if(counter.number < 0 || counter.number > 0){
+  if (counter.number < 0 || counter.number > 0) {
     return false;
-  }else{
+  } else {
     return true;
   }
 }
-console.log(balaced(main(),counter));
+// console.log(balaced(main(),counter));
+
+
+function bstMatchTest(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  arr1.sort();
+  arr2.sort();
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+//This is time complexity o(n)
+console.log(bstMatchTest([1, 2, 3, 4, 5], [5, 3, 4, 2, 1]));
