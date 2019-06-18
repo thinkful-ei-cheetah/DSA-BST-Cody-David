@@ -42,8 +42,8 @@ class BinarySearchTree {
     else if (key < this.key && this.left) {
       this.left.find(key);
     }
-    else if (key > this.key && this.left) {
-      this.fight.find(key);
+    else if (key > this.key && this.right) {
+      this.right.find(key);
     }
     else {
       throw new Error('key error');
@@ -117,30 +117,30 @@ class BinarySearchTree {
 function main() {
   let bst = new BinarySearchTree();
   let EasyBst = new BinarySearchTree();
-  bst.insert(3, 3);
-  bst.insert(1, 1);
-  bst.insert(4, 4);
-  bst.insert(6, 6);
-  bst.insert(9, 9);
-  bst.insert(2, 2);
-  bst.insert(5, 5);
-  bst.insert(7, 7);
-  console.log(bst);
-  return(bst);
-  // EasyBst.insert('e');
-  // EasyBst.insert('a');
-  // EasyBst.insert('s');
-  // EasyBst.insert('y');
-  // EasyBst.insert('q');
-  // EasyBst.insert('u');
-  // EasyBst.insert('e');
-  // EasyBst.insert('s');
-  // EasyBst.insert('t');
-  // EasyBst.insert('i');
-  // EasyBst.insert('o');
-  // EasyBst.insert('n');
+  // bst.insert(3, 3);
+  // bst.insert(1, 1);
+  // bst.insert(4, 4);
+  // bst.insert(6, 6);
+  // bst.insert(9, 9);
+  // bst.insert(2, 2);
+  // bst.insert(5, 5);
+  // bst.insert(7, 7);
+  // // console.log(bst);
+  // return(bst);
+  EasyBst.insert('e');
+  EasyBst.insert('a');
+  EasyBst.insert('s');
+  EasyBst.insert('y');
+  EasyBst.insert('q');
+  EasyBst.insert('u');
+  EasyBst.insert('e');
+  EasyBst.insert('s');
+  EasyBst.insert('t');
+  EasyBst.insert('i');
+  EasyBst.insert('o');
+  EasyBst.insert('n');
   // console.log(EasyBst);
-  // return(EasyBst);
+  return(EasyBst);
 }
 // console.log(main());
 
@@ -153,7 +153,7 @@ function tree(t) {
 }
 
 
-
+//Height
 function height(tree){
   if(!tree){
     return 0;
@@ -164,4 +164,41 @@ function height(tree){
   return 1 + Math.max(leftHeight, rightHeight);
 }
 
-console.log(tree(main()));
+// console.log(tree(main()));
+
+//is it a BST
+function isBST(tree){
+
+  if(!tree){
+    return false;
+  }
+  else if (tree.left > tree.key || tree.right < tree.key) {
+    return false;
+  }else{
+    return true;
+  }
+  
+}
+// console.log(isBST(main()));
+let state = {
+  n: 3,
+  result:null
+};
+function thirdLargest(tree,state){
+
+  if(tree.right){
+    thirdLargest(tree.right,state);
+    if(state.result) return;
+  }
+  state.n--;
+  if(!state.n){
+    state.result = tree.key;
+    return state.result;
+  }
+  if (tree.left) {
+    thirdLargest(tree.left, state);
+  }
+
+}
+thirdLargest(main(),state);
+console.log(state.result);
