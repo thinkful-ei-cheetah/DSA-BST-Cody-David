@@ -201,4 +201,24 @@ function thirdLargest(tree,state){
 
 }
 thirdLargest(main(),state);
-console.log(state.result);
+// console.log(state.result);
+let counter = {
+  number: 0
+};
+function balaced(tree,counter){
+
+  if(tree.right){
+    counter.number++;
+    balaced(tree.right,counter);
+  }
+  if(tree.left){
+    counter.number--;
+    balaced(tree.left,counter);
+  }
+  if(counter.number < 0 || counter.number > 0){
+    return false;
+  }else{
+    return true;
+  }
+}
+console.log(balaced(main(),counter));
